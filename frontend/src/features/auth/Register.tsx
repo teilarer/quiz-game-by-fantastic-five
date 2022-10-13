@@ -1,29 +1,45 @@
+import { userInfo } from 'os';
 import React, { useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../store';
 import * as api from './api'
 
 function Register(): JSX.Element {
-    const [name, setName] = useState<string>();
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
-    const [secPassword, setSecPassword] = useState<string>();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selector = useSelector((globalState: RootState) => globalState.auth)
 
-    function handleSubmit() {
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [secPassword, setSecPassword] = useState<string>('');
 
+  console.log(selector)
+  
+  function handleSubmit() {
+
+      event?.preventDefault()
+      api.register({name, email, password, secPassword})
+        .then((user) => {
+          dispatch({type: 'auth/registration/success', payload: user});
+          // navigate('/auth/register')
+        })
     }
 
-    function handleNameChange(name: string) {
+  function handleNameChange(name: string) {
         setName(name)
     }
 
-    function handleEmailChange(email: string) {
+  function handleEmailChange(email: string) {
         setEmail(email)
     }
 
-    function handlePassChange(pass: string) {
+  function handlePassChange(pass: string) {
         setPassword(pass)
     }
 
-    function handleSecPassChange(pass: string) {
+  function handleSecPassChange(pass: string) {
         setSecPassword(pass)
     }
 
@@ -39,7 +55,8 @@ function Register(): JSX.Element {
       <br />
       <input placeholder='Повторите пароль' type="password" value={secPassword} onChange={(event) => handleSecPassChange(event?.target.value)}></input>
       <br />
-      <button>Зарегистрироваться</button>
+      <button type="submit">Зарегистрироваться</button>
+      {selector.user && <div>{selector.user.name}</div>}
     </form>
   );
 }
