@@ -19,7 +19,13 @@ export default function Navigation ({user}) {
     ) : (
         <>
         <Tab value="Main Page" label="Main Page" />
-        <Tab value="Main Page" label="Main Page" />
+        <h3>
+        Приветствую,
+                {user.name}
+                , ваш счёт
+                {' '}
+                {user.score}
+        </h3>
         <Tab value="Logout" label="Logout" />
         </>
         )
