@@ -41,7 +41,7 @@ authRouter.post("/auth/register", async (req, res) => {
       email: user.email,
     };
 
-    res.json({ message: "success", user });
+    res.json({ message: "success", user: {id: user.id, name: user.name, email: user.email, score: user.score} });
   } catch (error) {
     res.json({ error: error.message });
   }

@@ -9,6 +9,7 @@ const initialState: AuthState = {
 const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, action) => {
     switch(action.type) {
         case ('auth/login/success'): {
+            console.log(action.payload)
             return {
                 ...state, user: action.payload, loginFormError: undefined 
             }
@@ -27,6 +28,7 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
         }
 
         case 'auth/registration/success': {
+            console.log(action.payload)
             return {
                 ...state, user: action.payload, registerFormError: undefined
             }

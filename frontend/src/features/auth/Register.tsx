@@ -1,3 +1,4 @@
+import { userInfo } from 'os';
 import React, { useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -9,39 +10,36 @@ function Register(): JSX.Element {
   const dispatch = useDispatch();
   const selector = useSelector((globalState: RootState) => globalState.auth)
 
-  console.log('fff')
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [secPassword, setSecPassword] = useState<string>('');
+
   console.log(selector)
-
-    const [name, setName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [secPassword, setSecPassword] = useState<string>('');
-
-
-
-    function handleSubmit() {
+  
+  function handleSubmit() {
 
       event?.preventDefault()
       api.register({name, email, password, secPassword})
         .then((user) => {
-          dispatch({type: 'auth/register/success', payload: user}),
-          navigate('/auth/register')
+          dispatch({type: 'auth/registration/success', payload: user});
+          // navigate('/auth/register')
         })
     }
 
-    function handleNameChange(name: string) {
+  function handleNameChange(name: string) {
         setName(name)
     }
 
-    function handleEmailChange(email: string) {
+  function handleEmailChange(email: string) {
         setEmail(email)
     }
 
-    function handlePassChange(pass: string) {
+  function handlePassChange(pass: string) {
         setPassword(pass)
     }
 
-    function handleSecPassChange(pass: string) {
+  function handleSecPassChange(pass: string) {
         setSecPassword(pass)
     }
 
@@ -58,6 +56,7 @@ function Register(): JSX.Element {
       <input placeholder='Повторите пароль' type="password" value={secPassword} onChange={(event) => handleSecPassChange(event?.target.value)}></input>
       <br />
       <button type="submit">Зарегистрироваться</button>
+      {selector.user && <div>{selector.user.name}</div>}
     </form>
   );
 }

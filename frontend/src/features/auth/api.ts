@@ -48,7 +48,7 @@ export async function register(resData: RegisterData): Promise<User> {
     }
     
     const data = await response.json();
-      console.log(data)
+      console.log(data.user)
       return data.user
   }
   
