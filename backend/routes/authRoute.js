@@ -48,14 +48,12 @@ authRouter.post("/auth/registration", async (req, res) => {
 });
 
 authRouter.post("/auth/login", async (req, res) => {
-  if (
-    req.body.email.length < 1 ||
-    req.body.password.length < 1
-  ) {
+  const { email, password } = req.body
+  if ( email.trim() || password.trim()) {
     return res.json({ message: "Заполните все поля" });
   }
 
-  if (req.body.email.length > 4 && req.body.password.length > 7) {
+  if (email.length > 4 && password.length > 7) {
     let user;
     try {
       user = await User.findOne({ where: { email: req.body.email } });
@@ -69,7 +67,7 @@ authRouter.post("/auth/login", async (req, res) => {
     }
 
     try {
-      const compPass = await bcrypt.compare(req.body.password, user.password);
+      const compPass = await bcrypt.compare(password, user.password);
       if (!compPass) {
         res.json({ message: "Неверный email и/или пароль." });
         return;
@@ -101,9 +99,9 @@ authRouter.get("/auth/logout", (req, res) => {
 });
 
 
-authRouter.get('/', async (req, res) => {
+authRouter.get('/auth/user', async (req, res) => {
   if (req.session.user) {
-    const user = await User.findOne({ where: {id: req.session.user.id}, attributes: ['id', 'name', 'score']});
+    const user = await User.findOne({ where: {id: req.session.user.id}, attributes: ['id', 'name', 'email','score']});
     res.json({ isUser: true, user });
   } else {
     res.json({ isUser: false });
