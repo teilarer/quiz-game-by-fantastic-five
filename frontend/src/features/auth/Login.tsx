@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../store';
 import * as api from './api'
 
 function Login(): JSX.Element {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selector = useSelector((globalState: RootState) => globalState.auth)
+
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
   function handleSubmit() {
     event?.preventDefault()
     api.login({email, password})
-      .then((user) => console.log(user))
+      .then((user) => {
+        dispatch({type: 'auth/login/success', payload: user})
+        navigate('/auth/login')
+      })
   }
 
   function handleEmailChange(email: string) {

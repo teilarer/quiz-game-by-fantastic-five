@@ -6,7 +6,7 @@ const initialState: AuthState = {
     authChecked: false,
   };
 
-const authReducer: Reducer<AuthState, AuthAction> = (state: AuthState = initialState, action: AuthAction) => {
+const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, action) => {
     switch(action.type) {
         case ('auth/login/success'): {
             return {
@@ -55,5 +55,11 @@ const authReducer: Reducer<AuthState, AuthAction> = (state: AuthState = initialS
                 ...state, user: undefined
             }
         }
+        default: {
+            return state
     }
+
 }
+}
+
+export default authReducer

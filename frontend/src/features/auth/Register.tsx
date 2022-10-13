@@ -1,16 +1,32 @@
 import React, { useState} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../../store';
 import * as api from './api'
 
 function Register(): JSX.Element {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selector = useSelector((globalState: RootState) => globalState.auth)
+
+  console.log('fff')
+  console.log(selector)
+
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [secPassword, setSecPassword] = useState<string>('');
 
+
+
     function handleSubmit() {
+
       event?.preventDefault()
       api.register({name, email, password, secPassword})
-        .then((user) => console.log(user))
+        .then((user) => {
+          dispatch({type: 'auth/register/success', payload: user}),
+          navigate('/auth/register')
+        })
     }
 
     function handleNameChange(name: string) {
