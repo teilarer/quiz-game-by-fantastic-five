@@ -20,4 +20,4 @@ function CardsList(): JSX.Element {
     );
 }
 
-export default CardList;
+export default CardsList;
