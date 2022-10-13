@@ -1,4 +1,5 @@
 import { Tabs, Tab } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function Navigation ({user}) {
     return (
@@ -12,15 +13,21 @@ export default function Navigation ({user}) {
   >
      {!user ? (
         <>
-    <Tab value="Main Page" label="Main Page" />
-    <Tab value="Registration" label="Registration" />
-    <Tab value="Login" label="Login" />
+    <Tab value="Main Page" label="Main Page" href="/"/>
+    <Tab value="Registration" label="Registration" href="/registration"/>
+    <Tab value="Login" label="Login" href="/login"/>
     </>
     ) : (
         <>
-        <Tab value="Main Page" label="Main Page" />
-        <Tab value="Main Page" label="Main Page" />
-        <Tab value="Logout" label="Logout" />
+        <Tab value="Main Page" label="Main Page" href="/"/>
+        <h3>
+        Приветствую,
+                {user.name}
+                , ваш счёт
+                {' '}
+                {user.score}
+        </h3>
+        <Tab value="Logout" label="Logout" href="/logout"/>
         </>
         )
     }
