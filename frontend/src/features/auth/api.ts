@@ -32,6 +32,7 @@ export async function login(credentials: Credentials): Promise<User> {
 }
 
 export async function register(resData: RegisterData): Promise<User> {
+  console.log(resData)
     const response = await fetch('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(resData),

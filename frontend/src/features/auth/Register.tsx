@@ -2,13 +2,15 @@ import React, { useState} from 'react';
 import * as api from './api'
 
 function Register(): JSX.Element {
-    const [name, setName] = useState<string>();
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
-    const [secPassword, setSecPassword] = useState<string>();
+    const [name, setName] = useState<string>('');
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [secPassword, setSecPassword] = useState<string>('');
 
     function handleSubmit() {
-
+      event?.preventDefault()
+      api.register({name, email, password, secPassword})
+        .then((user) => console.log(user))
     }
 
     function handleNameChange(name: string) {
@@ -39,7 +41,7 @@ function Register(): JSX.Element {
       <br />
       <input placeholder='Повторите пароль' type="password" value={secPassword} onChange={(event) => handleSecPassChange(event?.target.value)}></input>
       <br />
-      <button>Зарегистрироваться</button>
+      <button type="submit">Зарегистрироваться</button>
     </form>
   );
 }
