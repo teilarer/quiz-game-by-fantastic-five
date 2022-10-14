@@ -9,7 +9,6 @@ function ThemeComponent({ theme }: { theme: Theme }): JSX.Element {
   const selector = useSelector((globalState: any) => globalState.cardsState);
   const { cards } = selector;
 
-
   useEffect(() => {
     api.getCards()
      .then((cardes) => dispatch({ type: '/cards/loaded', payload: cardes }));

@@ -1,0 +1,33 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-card {
+    display: flex;
+    align-items: center;
+    flex-direction: row !important;
+    justify-content: center;
+    border: 1px solid black;
+}
+.stack{
+    display: flex !important;
+    flex-direction: column !important;
+    margin-top: 100px;
+
+}
+.questionsContainer{
+    display: flex !important;
+    flex-direction: row !important;
+}
+.themelist{ 
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+}
+.container-card{
+    margin-left: 20px;
+
+    padding: 5px;
+}
