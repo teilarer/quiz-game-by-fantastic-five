@@ -22,7 +22,7 @@ function Login(): JSX.Element {
       .then((data) => {
         if (data.user) {
         dispatch({type: 'auth/login/success', payload: data.user})
-        navigate('/auth/login')
+        navigate('/main')
         }
         else {
           dispatch({type: 'auth/login/error', payload: data.message}); 
