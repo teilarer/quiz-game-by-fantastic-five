@@ -1,6 +1,5 @@
 import { Tabs, Tab } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
-import { applyMiddleware } from 'redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import style from './nav.module.css';
 import '@fontsource/roboto/100.css';
@@ -10,31 +9,31 @@ export default function Navigation({}): JSX.Element {
   return (
     <div className={style.navbar}>
       <Tabs
-        // value={value}
+        value="Main"
         // onChange={handleChange}
         textColor="secondary"
         indicatorColor="secondary"
         aria-label="secondary tabs example"
       >
-        {!selector.user ? (
-          <>
-            <Tab value="Main Page" label="Main Page" href="/" />
-            <Tab
+        ...{!selector.user ? (
+          [
+            <Tab key="main" value="Main Page" label="Главная" href="/" />,
+            <Tab key="register"
               value="Registration"
-              label="Registration"
+              label="Регистрация"
               href="/auth/register"
-            />
-            <Tab value="Login" label="Login" href="/auth/login" />
-          </>
+            />,
+            <Tab key="login" value="Login" label="Войти" href="/auth/login" />
+          ]
         ) : (
-          <>
-            <Tab value="Main Page" label="Main Page" href="/" />
-            <h5>
-              Приветствую,
-              {selector?.user.name}, ваш счёт {selector?.user.score}
-            </h5>
-            <Tab value="Logout" label="Logout" href="/logout" />
-          </>
+          [
+            <Tab key="main" value="Main Page" label="Главная" href="/" />,
+            // <h5>
+            //   Приветствую,
+            //   {selector?.user.name}, ваш счёт {selector?.user.score}
+            // </h5>,
+            <Tab key="logout" value="Logout" label="Выйти" href="/logout" />
+          ]
         )}
       </Tabs>
     </div>
