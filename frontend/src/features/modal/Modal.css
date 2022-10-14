@@ -1,11 +1,12 @@
 .modal-content {
     position: absolute;
-    top: 100px;
+    top: 50px;
+    left: 120px;
     width: 700px;
     z-index: 3;
     border: 2px groove;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
     background-color: white;
     align-items: center;
 }
@@ -20,7 +21,7 @@
      top: 0px;
     width: 150%;
     height: 120%;
-    /* position: absolute; */
+    position: static;
     margin-left: 65px;
     margin-right: auto;
     background: rgb(57 53 53 / 71%); 

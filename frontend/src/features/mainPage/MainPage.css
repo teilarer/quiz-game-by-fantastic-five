@@ -14,7 +14,7 @@ body{
 .stack{
     display: flex !important;
     flex-direction: column !important;
-    margin-top: 100px;
+    margin-top: 10px;
 
 }
 .questionsContainer{
@@ -30,4 +30,17 @@ body{
     margin-left: 20px;
 
     padding: 5px;
+}
+
+.cardItem:hover {
+    cursor: pointer;
+    color: red;
+}
+
+.MuiPaper-root {
+    margin-top: 10px;
+}
+
+.MuiPaper-root:hover {
+    background-color: gray;
 }

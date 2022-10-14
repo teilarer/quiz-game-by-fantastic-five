@@ -23,7 +23,7 @@ function Modal({
 
     const handleSubmit = async (e: any): Promise<void> => {
       e.preventDefault();
-      if (card.answer === e.target.quest.value) {
+      if (card.answer.toLowerCase() === e.target.quest.value.toLowerCase()) {
         setShowAnswer(`Правильно. + ${card.points} очков`);
         const response = await fetch('/user/changed', {
           method: 'PUT',

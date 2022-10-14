@@ -19,7 +19,7 @@ function ThemeComponent({ theme }: { theme: Theme }): JSX.Element {
     return (
       <div className="themelist">
         <div className="themeItem">
-          {theme.title}
+          <b className="text">{theme.title}</b>
         </div>
         <div className="questionsContainer">
           {cards.map((card: any) => card.theme_id === theme.id

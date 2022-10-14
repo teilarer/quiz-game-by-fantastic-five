@@ -23,6 +23,7 @@ export default function Navigation({}): JSX.Element {
               value="Registration"
               label="Регистрация"
               href="/auth/register"
+
             />,
             <Tab key="login" value="Login" label="Войти" href="/auth/login" />
           ]

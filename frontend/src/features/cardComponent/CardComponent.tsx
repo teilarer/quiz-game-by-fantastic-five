@@ -7,7 +7,7 @@ function CardComponent({ card }: { card: Card }): JSX.Element {
     return (
       <div className="container-card">
         <div className="cardItem" onClick={() => setActives(true)}>
-          {card.points}
+          <span className='text'>{card.points}</span>
         </div>
       <div> {actives && <Modal active={actives} setActive={setActives} card={card} />}</div>
        {/* <div> {actives && <div>1111</div>}</div> */}
