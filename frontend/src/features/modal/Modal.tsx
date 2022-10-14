@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../cardComponent/types/Card';
+import './Modal.css'
 
 interface ModalProps {
   card: Card;
@@ -54,7 +55,7 @@ function Modal({
         onClick={() => setActive(false)}
       >
         <div
-          className={active ? 'modal__content active' : 'modal__content'}
+          className={active ? 'modal-content active' : 'modal__content'}
           onClick={(e) => e.stopPropagation()}
         >
           <div>
