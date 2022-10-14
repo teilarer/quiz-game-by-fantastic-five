@@ -17,7 +17,7 @@ function Modal({
     const [activeb, setActiveb] = useState(false);
     const [showAnswer, setShowAnswer] = useState('');
 
-    const { sessionUser } = useSelector((state) => state.userState);
+    // const { sessionUser } = useSelector((state) => state.userState);
     const dispatch = useDispatch();
 
     const handleSubmit = async (e) => {
