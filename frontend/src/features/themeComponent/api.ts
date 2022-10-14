@@ -1,5 +1,8 @@
 import Theme from './types/Theme';
 
-export default async function getThemes(): Promise<Theme[]> {
-    return (await fetch('/themes/loaded')).json();
+export async function getThemes(): Promise<Theme[]> {
+  console.log('api')
+    const response = await fetch('/themes/loaded')
+    const data = await response.json()
+    return data
   }
