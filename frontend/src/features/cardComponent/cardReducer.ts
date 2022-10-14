@@ -5,10 +5,10 @@ import CardsState from './types/CardState';
 const initialState: CardsState = {
     cards: [],
 };
-const cardsReducer: Reducer<CardsState, CardsAction> = (state = initialState, action) => {
+const cardsReducer: Reducer<CardsState, CardsAction> = (state: CardsState = initialState, action) => {
     switch (action.type) {
         case '/cards/loaded': {
-            return { ...state, themes: action.payload };
+            return { ...state, cards: action.payload };
         }
 
         default: return state;

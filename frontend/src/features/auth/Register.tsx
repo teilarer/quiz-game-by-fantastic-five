@@ -28,7 +28,7 @@ function Register(): JSX.Element {
           if (data.user) {
             console.log(data)
           dispatch({type: 'auth/registration/success', payload: data.user});
-          navigate('/auth/register')
+          navigate('/main')
           } else {
           dispatch({type: 'auth/registration/error', payload: data.message}); 
           }
