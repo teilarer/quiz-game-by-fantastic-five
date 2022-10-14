@@ -87,14 +87,14 @@ authRouter.post("/auth/login", async (req, res) => {
   }
 });
 
-authRouter.get("/auth/logout", (req, res) => {
+authRouter.post("/auth/logout", (req, res) => {
   req.session.destroy((error) => {
     if (error) {
       res.json({ error: "Не удалось выйти" });
       return;
     }
-    res.clearCookie("user_sid");
-    res.json({ message: "success" });
+    res.clearCookie('user_sid');
+    res.json({ message: 'success'} )
   });
 });
 
