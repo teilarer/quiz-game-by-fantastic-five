@@ -17,7 +17,7 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
 
         case 'auth/login/error': {
             return {
-                ...state, loginFormError: action.error
+                ...state, loginFormError: action.payload
             }
         }
 
@@ -30,13 +30,13 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
         case 'auth/registration/success': {
             console.log(action.payload)
             return {
-                ...state, user: action.payload, registerFormError: undefined
+                ...state, user: action.payload, registerFormError: ''
             }
         }
 
         case 'auth/registration/error': {
             return {
-                ...state, registerFormError: action.error,
+                ...state, registerFormError: action.payload,
             }
         }
 
