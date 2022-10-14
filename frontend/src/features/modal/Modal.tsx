@@ -58,13 +58,14 @@ function Modal({
           className={active ? 'modal-content active' : 'modal__content'}
           onClick={(e) => e.stopPropagation()}
         >
-          <div>
+          <div className="modal-123">
             <h2>Вопрос:</h2>
             <br />
             <p>{card.content}</p>
             <form className="form" action="/game" onSubmit={handleSubmit}>
               <h2>Введите ответ:</h2>
               <input type="text" name="quest" autoComplete="off" />
+              <br></br>
               <button
                 type="submit"
                 onMouseEnter={() => setActiveb(true)}

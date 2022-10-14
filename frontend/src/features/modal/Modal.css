@@ -17,13 +17,15 @@
 
 .modal {
     overflow: hidden;
-    position: fixed;
-    top: 0px;
-    width: 100%;
+     top: 0px;
+    width: 150%;
     height: 120%;
-    position: absolute;
-    margin-left: auto;
+    /* position: absolute; */
+    margin-left: 65px;
     margin-right: auto;
-    background: rgb(57 53 53 / 71%)
+    background: rgb(57 53 53 / 71%); 
+    display: flex;
+     justify-content: center;
+     margin-bottom: 15%;
 }
 
