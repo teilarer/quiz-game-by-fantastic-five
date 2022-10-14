@@ -4,17 +4,17 @@ const bcrypt = require("bcrypt");
 const { User } = require("../db/models");
 
 authRouter.post("/auth/register", async (req, res) => {
-  console.log(123);
+  console.log(req.body);
   try {
-    const { name, email, password, repeatPass } = req.body;
-    console.log(name, email, password, repeatPass);
+    const { name, email, password, secPassword } = req.body;
+    console.log(name, email, password, secPassword);
     const uniqUser = await User.findOne({ where: { email } });
 
     if (
       name.length < 1 ||
       email.length < 1 ||
       password.length < 1 ||
-      repeatPass.length < 1
+      secPassword.length < 1
     ) {
       return res.json({ message: "Заполните все поля" });
     }
@@ -24,7 +24,7 @@ authRouter.post("/auth/register", async (req, res) => {
     if (password.length < 7) {
       return res.json({ message: "Минимальная длина пароля 8 символов" });
     }
-    if (password !== repeatPass) {
+    if (password !== secPassword) {
       return res.json({ message: "Пароли не совпадают" });
     }
 
@@ -41,7 +41,7 @@ authRouter.post("/auth/register", async (req, res) => {
       email: user.email,
     };
 
-    res.json({ message: "success", user });
+    res.json({ message: "success", user: {id: user.id, name: user.name, email: user.email, score: user.score} });
   } catch (error) {
     res.json({ error: error.message });
   }
@@ -49,7 +49,7 @@ authRouter.post("/auth/register", async (req, res) => {
 
 authRouter.post("/auth/login", async (req, res) => {
   const { email, password } = req.body
-  if ( email.trim() || password.trim()) {
+  if ( !email.trim() || !password.trim()) {
     return res.json({ message: "Заполните все поля" });
   }
 
@@ -87,14 +87,14 @@ authRouter.post("/auth/login", async (req, res) => {
   }
 });
 
-authRouter.get("/auth/logout", (req, res) => {
+authRouter.post("/auth/logout", (req, res) => {
   req.session.destroy((error) => {
     if (error) {
       res.json({ error: "Не удалось выйти" });
       return;
     }
-    res.clearCookie("user_sid");
-    res.json({ message: "success" });
+    res.clearCookie('user_sid');
+    res.json({ message: 'success'} )
   });
 });
 

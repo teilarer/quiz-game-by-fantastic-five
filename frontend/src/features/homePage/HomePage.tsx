@@ -1,9 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import Navigation from '../nav/Navigation';
 
 function HomePage(): JSX.Element {
   return (
-    <Outlet />
+    <>
+      <Navigation />
+      <Outlet />
+    </>
   );
 }
 
