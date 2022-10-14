@@ -10,5 +10,4 @@ questionRouter.get('/', async (req, res) => {
   });
   res.json(allQuestions);
 });
-
 module.exports = questionRouter;

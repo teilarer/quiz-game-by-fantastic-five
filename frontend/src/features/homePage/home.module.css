@@ -1,0 +1,30 @@
+.h6 {
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: lighter;
+    text-align: center;
+    display:inline-block;
+    justify-content: center;
+    margin-top: 43px;
+}
+
+.h2 {
+    font-family: Roboto;
+    font-size: 50px;
+    font-weight: lighter;
+    text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    justify-content: center;
+    display:inline-block;
+}
+
+.asdf {
+    display:flex;
+    justify-content: center;
+    text-align: center;
+}

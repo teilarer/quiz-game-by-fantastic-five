@@ -21,15 +21,16 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+
 function MainPage(): JSX.Element {
   const dispatch = useDispatch();
-   const selector = useSelector((globalState: RootState) => globalState.themesState);
+   const selector = useSelector((globalState: any) => globalState.themesState);
    const { themes } = selector;
    console.log(themes);
 
    useEffect(() => {
     api.getThemes()
-     .then((themes) => dispatch({ type: '/themes/loaded', payload: themes }));
+     .then((themeses) => dispatch({ type: '/themes/loaded', payload: themeses }));
    }, []);
 
   return (

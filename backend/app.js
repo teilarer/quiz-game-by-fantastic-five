@@ -9,6 +9,7 @@ const authRouter = require("./routes/authRoute");
 const homeRouter = require("./routes/homeRouter");
 const themeRouter = require('./routes/themeRouter');
 const questionRouter = require('./routes/questionRouter');
+const modalRouter = require('./routes/modalRoute');
 const { use } = require("./routes/authRoute");
 const app = express();
 config(app);
@@ -20,6 +21,7 @@ app.use("/api", authRouter);
 app.use("/home", homeRouter);
 app.use('/themes/loaded', themeRouter);
 app.use('/cards/loaded', questionRouter);
+app.use('/user/changed', modalRouter);
 
 
 app.listen(PORT, async () => {

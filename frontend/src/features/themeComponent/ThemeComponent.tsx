@@ -6,12 +6,12 @@ import * as api from '../cardComponent/api';
 
 function ThemeComponent({ theme }: { theme: Theme }): JSX.Element {
   const dispatch = useDispatch();
-  const selector = useSelector((globalState: RootState) => globalState.cardsState);
+  const selector = useSelector((globalState: any) => globalState.cardsState);
   const { cards } = selector;
 
   useEffect(() => {
     api.getCards()
-     .then((cards) => dispatch({ type: '/cards/loaded', payload: cards }));
+     .then((cardes) => dispatch({ type: '/cards/loaded', payload: cardes }));
    }, []);
     return (
       <div className="themelist">
@@ -19,7 +19,7 @@ function ThemeComponent({ theme }: { theme: Theme }): JSX.Element {
           {theme.title}
         </div>
         <div className="questionsContainer">
-          {cards.map((card) => card.theme_id === theme.id
+          {cards.map((card: any) => card.theme_id === theme.id
             && <CardComponent card={card} key={card.id} />
           )}
         </div>
