@@ -8,6 +8,7 @@ type AuthAction =
   | { type: 'auth/registration/error'; payload: string }
   | { type: 'auth/register/reset/error' }
   | { type: 'auth/user/checked'; payload: User | undefined }
-  | { type: 'auth/user/logout' };
+  | { type: 'auth/user/logout' }
+  | { type: '/user/changed', payload: User };
 
 export default AuthAction;
