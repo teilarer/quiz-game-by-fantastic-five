@@ -12,7 +12,7 @@ export async function checkUser(): Promise<
     return (await fetch('/api/auth/user')).json();
 }
 
-export async function login(credentials: Credentials): Promise<User> {
+export async function login(credentials: Credentials): Promise<{user?: User, message?: string}> {
     const response = await fetch('/api/auth/login', {
         method: 'POST',
         body: JSON.stringify(credentials),
@@ -20,18 +20,18 @@ export async function login(credentials: Credentials): Promise<User> {
           'Content-Type': 'application/json',
         },
       });
-
+    const data = await response.json();
+  
     if (response.status >= 400) {
-        const { error } = await response.json();
-        console.log(error)
-        throw error;
-      }
-      const data = await response.json();
-      console.log(data)
-      return data.user
+      const { error } = data;
+      console.log(error)
+      throw error;
+    }
+
+      return data
 }
 
-export async function register(resData: RegisterData): Promise<User> {
+export async function register(resData: RegisterData): Promise<{user?: User, message?: string}> {
   console.log(resData)
     const response = await fetch('/api/auth/register', {
       method: 'POST',
@@ -40,16 +40,16 @@ export async function register(resData: RegisterData): Promise<User> {
         'Content-Type': 'application/json',
       },
     });
+
+    const data = await response.json();
   
     if (response.status >= 400) {
-      const { error } = await response.json();
+      const { error } = data;
       console.log(error)
       throw error;
     }
-    
-    const data = await response.json();
-      console.log(data.user)
-      return data.user
+
+      return data
   }
   
   export async function logout(): Promise<void> {
