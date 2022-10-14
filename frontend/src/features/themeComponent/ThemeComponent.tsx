@@ -7,7 +7,10 @@ import * as api from '../cardComponent/api';
 function ThemeComponent({ theme }: { theme: Theme }): JSX.Element {
   const dispatch = useDispatch();
   const selector = useSelector((globalState: any) => globalState.cardsState);
+  const selectorS = useSelector((globalState: any) => globalState.auth.user)
   const { cards } = selector;
+
+  console.log(selectorS)
 
   useEffect(() => {
     api.getCards()

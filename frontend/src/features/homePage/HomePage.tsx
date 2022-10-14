@@ -16,7 +16,6 @@ function HomePage(): JSX.Element {
       <h6 className={style.h6}>или</h6>
       <Button className={style.button} onClick={() => navigate('/auth/register')}>Зарегистрируйтесь</Button>
 
-      <Outlet />
       </div>
     </>
   );

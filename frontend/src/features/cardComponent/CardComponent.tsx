@@ -9,10 +9,9 @@ function CardComponent({ card }: { card: Card }): JSX.Element {
         <div className="cardItem" onClick={() => setActives(true)}>
           {card.points}
         </div>
-      </div>
       <div> {actives && <Modal active={actives} setActive={setActives} card={card} />}</div>
        {/* <div> {actives && <div>1111</div>}</div> */}
-      </>
+       </div>
     );
   }
 

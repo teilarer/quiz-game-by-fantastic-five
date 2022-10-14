@@ -28,11 +28,11 @@ export default function Navigation({}): JSX.Element {
         ) : (
           [
             <Tab key="main" value="Main Page" label="Главная" href="/" />,
+            <Tab key="logout" value="Logout" label="Выйти" href="/logout" />
             // <h5>
             //   Приветствую,
             //   {selector?.user.name}, ваш счёт {selector?.user.score}
             // </h5>,
-            <Tab key="logout" value="Logout" label="Выйти" href="/logout" />
           ]
         )}
       </Tabs>

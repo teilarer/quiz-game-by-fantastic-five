@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../cardComponent/types/Card';
-import './Modal.css'
+import './Modal.css';
 
 interface ModalProps {
   card: Card;
