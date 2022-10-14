@@ -1,10 +1,10 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-function Main(): JSX.Element {
+function HomePage(): JSX.Element {
   return (
     <Outlet />
   );
 }
 
-export default Main;
+export default HomePage;

@@ -1,20 +1,25 @@
+import { Reducer } from 'react';
+import CardsAction from './types/CardsAction';
+import CardsState from './types/CardsState';
+
 const initialState: CardsState = {
     cards: [],
-}
+};
 const cardsReducer: Reducer<CardsState, CardsAction> = (state = initialState, action) => {
     switch (action.type) {
         case 'cards/loaded': {
-            return {...state, cards: action.payload}
+            return { ...state, cards: action.payload };
         }
-        case 'cards/updated': {
-            const newCard = action.playload
+        case 'btn/updated': {
+            const newCardlist = action.payload;
             return {
                 ...state,
-                cards: state.cards.map((newUpdatedCard) => (newUpdatedCard.id === newCard.id ? newCard : newUpdatedCard))
+                cards: state.cards.map((el) => el.id !== action.payload.card.id)
+                console.log(action.payload);
+                
             };
         }
     }
-    return state;
-}
+};
 
 export default cardsReducer;

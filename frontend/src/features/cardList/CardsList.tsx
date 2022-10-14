@@ -1,22 +1,31 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import api from './api';
+import { useDispatch, useSelector } from 'react-redux';
+import * as api from './api';
+import Card from './Card';
 
 function CardsList(): JSX.Element {
     const dispatch = useDispatch();
+    const cards = useSelector(selectCards);
+
 
     useEffect(() => {
         api
-        .getCards()
+        .cardsLoaded()
         .then((loadedCards) => {
             dispatch(cardsLoaded(loadedCards));
         });
-    }), [dispatch]
+    }), [dispatch];
 
     return (
-        <div>
-            cards
-        </div>
+        <div className="cardlist">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            card={card}
+            onChange={cardClick}
+          />
+        ))}
+      </div>
     );
 }
 

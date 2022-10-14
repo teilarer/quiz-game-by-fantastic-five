@@ -1,14 +1,9 @@
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class Card extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
+  class Question extends Model {
+    static associate({ Theme }) {
+        Question.belongsTo(Theme, { foreignKey: 'theme_id' });
     }
   }
   const attributes = {
@@ -18,20 +13,24 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER,
     },
-    theme: {
-      type: DataTypes.TEXT,
+    theme_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
+      references: {
+        model: 'Themes',
+        key: 'id',
+      },
+    },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+    },
+    answer: {
+        type: DataTypes.TEXT,
+        allowNull: false,
     },
     points: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    question: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    answer: {
-      type: DataTypes.TEXT,
       allowNull: false,
     },
     status: {
@@ -49,9 +48,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   const options = {
     sequelize,
-      modelName: "Card",
-      tableName: "Cards",
+      modelName: "Question",
+      tableName: "Questions",
   }
-  Card.init(attributes, options);
-  return Card;
+  Question.init(attributes, options);
+  return Question;
 };

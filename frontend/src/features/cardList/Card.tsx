@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function Card() {
+function Card(): JSX.Element {
+    const [active, setActive] = useState(false);
     return (
-        <div>
-            one Card
+        <div className="oneCard" onClick={setActive}>
         </div>
     );
 }
