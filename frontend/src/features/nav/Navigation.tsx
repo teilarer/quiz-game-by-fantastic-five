@@ -2,19 +2,20 @@ import { Tabs, Tab } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { applyMiddleware } from 'redux';
 import { RootState } from '../../store';
-import * as api from '../auth/api'
+import * as api from '../auth/api';
 
-export default function Navigation({ user }):JSX.Element {
+export default function Navigation():JSX.Element {
   const dispath = useDispatch();
   const selector = useSelector((globalState: RootState) => globalState.auth);
   console.log(selector, 'eto lejit selector');
 
-  function handleLogout() {
+  function handleLogout() : void {
     // event.preventDefault();
     api.logout()
-    .then(() => { 
-      console.log(selector.user)
-      dispath({type: 'auth/user/logout'})})
+    .then(() => {
+      console.log(selector.user);
+      dispath({ type: 'auth/user/logout' });
+});
   }
     return (
 <nav>
