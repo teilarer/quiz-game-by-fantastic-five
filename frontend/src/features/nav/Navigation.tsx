@@ -1,5 +1,6 @@
 import { Tabs, Tab } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { applyMiddleware } from 'redux';
 import { RootState } from '../../store';
 import style from './nav.module.css';
 import '@fontsource/roboto/100.css';

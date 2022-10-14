@@ -7,20 +7,24 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      theme: {
-        type: Sequelize.TEXT,
+      theme_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'Themes',
+          key: 'id',
+        },
+      },
+      content: {
+          type: Sequelize.TEXT,
+          allowNull: false,
+      },
+      answer: {
+          type: Sequelize.TEXT,
+          allowNull: false,
       },
       points: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      question: {
-        type: Sequelize.TEXT,
-        allowNull: false,
-      },
-      answer: {
-        type: Sequelize.TEXT,
         allowNull: false,
       },
       status: {
@@ -36,9 +40,9 @@ module.exports = {
         type: Sequelize.DATE,
       },
     }
-    await queryInterface.createTable('Cards',attributes);
+    await queryInterface.createTable('Questions',attributes);
   },
   async down(queryInterface) {
-    await queryInterface.dropTable('Cards');
+    await queryInterface.dropTable('Questions');
   },
 };

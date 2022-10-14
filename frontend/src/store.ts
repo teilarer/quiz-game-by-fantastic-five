@@ -1,9 +1,9 @@
 // Использование Redux без Redux Toolkit - считается устаревшей практикой
 import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import reducer from './rootReducer';
+import rootReducer from './rootReducer';
 
-const store = createStore(reducer, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools());
 
 export default store;
 
