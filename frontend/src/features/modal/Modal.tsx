@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Card from '../cardList/types/Card';
+import Card from '../cardComponent/types/Card';
 
 interface ModalProps {
   card: Card;
   active: boolean;
-  setActive: (card: Card) => void;
+  setActive: any
 }
 
 function Modal({
@@ -13,24 +13,26 @@ function Modal({
   active,
   setActive,
 }: ModalProps): JSX.Element {
+    const selector = useSelector((globalState: any) => globalState.auth);
     const [time, setTime] = useState(30);
     const [activeb, setActiveb] = useState(false);
     const [showAnswer, setShowAnswer] = useState('');
 
-    const { sessionUser } = useSelector((state) => state.userState);
     const dispatch = useDispatch();
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any): Promise<void> => {
       e.preventDefault();
-      if (card.answer === e.target.question.value) {
+      if (card.answer === e.target.quest.value) {
         setShowAnswer(`Правильно. + ${card.points} очков`);
-        const response = await fetch('/users', {
+        const response = await fetch('/user/changed', {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id: sessionUser.id, price: card.price })
+          body: JSON.stringify({ id: selector.user.id, points: card.points })
         });
         const data = await response.json();
-        dispatch({ type: ADD_USER, payload: data });
+        if (data.status === 'success') {
+        dispatch({ type: '/user/changed', payload: data.user });
+}
       } else {
         setShowAnswer(`Вы ошиблись. Правильный ответ: ${card.answer}`);
       }
@@ -58,11 +60,8 @@ function Modal({
           <div>
             <h2>Вопрос:</h2>
             <br />
-            {' '}
             <p>{card.content}</p>
-          </div>
-          <div>
-            <form className="form" action="/game" type="submit" onSubmit={handleSubmit}>
+            <form className="form" action="/game" onSubmit={handleSubmit}>
               <h2>Введите ответ:</h2>
               <input type="text" name="quest" autoComplete="off" />
               <button
@@ -70,21 +69,21 @@ function Modal({
                 onMouseEnter={() => setActiveb(true)}
                 onMouseLeave={() => setActiveb(false)}
                 className={activeb ? 'buttonb activeb' : 'buttonb'}
-              >
-                Ответить
+              > Ответить
               </button>
-              { showAnswer && (
+              <div className="answDiv">
+              Оставшееся время:
+               {' '}
+              {time}
+              {' '}
+              секунд
+              </div>
+
+              {showAnswer && (
               <div>
                 <p className="red">{showAnswer}</p>
               </div>
-              )}
-              <div className="answDiv">
-                Оставшееся время:
-                {' '}
-                {time}
-                {' '}
-                секунд
-              </div>
+)}
             </form>
           </div>
           <button className="buttonb activeb" type="button" onClick={() => setActive(false)}>Закрыть</button>
